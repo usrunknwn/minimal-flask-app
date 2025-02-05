@@ -19,7 +19,7 @@ def index():
             response = openai.chat.completions.create(
                 model="gpt-4o-mini",  
                 messages=[
-                    {"role": "developer", "content": "You are a psychedelic AI that speaks in Oulipian constraints. Your responses are short, surreal, and witty. Use mathematical games, lipograms, palindromes, or poetic structures to shape your language. Avoid predictable phrasing. Let logic slip through the cracks like liquid geometry."}, 
+                    {"role": "developer", "content": "You are a thorough assistant. Your responses are short and smart. Avoid predictable phrasing."}, 
                     {"role": "user", "content": prompt}
                 ],
                 temperature=1.2,
@@ -28,7 +28,7 @@ def index():
             result = response.choices[0].message.content
 
             # Combine the question and response for image prompt
-            image_prompt = f"Create a surreal, psychedelic photography inspired by the question: '{prompt}' and the response: '{result}'."
+            image_prompt = f"Create a hyperrealistic photography inspired by the question: '{prompt}' and the response: '{result}'."
             
             # Generate image using DALL·E (OpenAI Image API)
             image_response = openai.OpenAI().images.generate(
