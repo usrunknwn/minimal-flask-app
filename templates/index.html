@@ -5,34 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jungian Dream Interpreter</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Brutalist Styling */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px 10px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.5rem;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form Styling */
+        form {
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 1.5rem;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #fff;
+            background-color: #000;
+            color: #fff;
+            resize: none;
+        }
+
+        button {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 15px;
+            border: 2px solid #fff;
+            background: none;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* Output Box */
+        .output-container {
+            border: 2px solid #fff;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 700px;
+            text-align: left;
+            background-color: #111;
+            border-radius: 15px;
+        }
+
+        .output-container h3 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 10px;
+        }
+
+        .output-text {
+            font-size: 1.3rem;
+            font-weight: 400;
+            padding-top: 10px;
+        }
+
+        .output-image {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            border-radius: 10px;
+            border: 2px solid #fff;
+        }
+    </style>
 </head>
 <body>
-    <div class="container text-center mt-5">
-        <h1 class="display-4">Jungian Dream Interpreter</h1>
-        <p class="lead">Enter your dream, and AI will interpret it using Jungian psychology.</p>
+    <h1>Jungian Dream Interpreter</h1>
+    <p>Describe your dream below and receive an interpretation with a unique visual representation.</p>
 
-        <form method="POST" class="mx-auto col-md-8 col-lg-6">
-            <div class="mb-3">
-                <textarea name="prompt" rows="4" class="form-control" placeholder="Describe your dream..." required></textarea>
-            </div>
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Interpret Dream</button>
-            </div>
-        </form>
+    <form method="POST">
+        <textarea name="prompt" rows="4" placeholder="Describe your dream..." required></textarea>
+        <button type="submit">Interpret Dream</button>
+    </form>
 
-        {% if result %}
-            <div class="mt-4">
-                <h3>Interpretation:</h3>
-                <div class="alert alert-secondary">{{ result }}</div>
-            </div>
-        {% endif %}
+    {% if result %}
+        <div class="output-container">
+            <h3>Interpretation</h3>
+            <div class="output-text">{{ result }}</div>
+        </div>
+    {% endif %}
 
-        {% if image_url %}
-            <div class="mt-4">
-                <h3>Dream Image:</h3>
-                <img src="{{ image_url }}" class="img-fluid mt-2" style="max-width: 512px;" alt="Dream visualization">
-            </div>
-        {% endif %}
-    </div>
+    {% if image_url %}
+        <div class="output-container">
+            <h3>Dream Image</h3>
+            <img src="{{ image_url }}" class="output-image" alt="Dream Visualization">
+        </div>
+    {% endif %}
 </body>
 </html>
